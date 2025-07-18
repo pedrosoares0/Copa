@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa Pistão - Competição de Kart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Menu Fixo -->
+    <nav class="fixed-nav">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#hero" class="nav-link">Início</a>
+                <a href="#fotos" class="nav-link">Fotos</a>
+                <a href="#copa-pistao" class="nav-link">Sobre</a>
+                <a href="#pilotos" class="nav-link">Pilotos</a>
+                <a href="#premiacao" class="nav-link">Premiação</a>
+                <a href="#contador" class="nav-link">Próxima Corrida</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section section-snap">
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="video-hero.mp4" type="video/mp4">
+                <!-- Fallback para navegadores que não suportam vídeo -->
+                <div class="video-fallback"></div>
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="logo-container animate-fade-in-up">
+                <img src="copa-pistao-logo.png" alt="Copa Pistão" class="main-logo-image">
+            </div>
+
+            <div class="hero-subtitle animate-fade-in-up" style="animation-delay: 0.3s;">
+                <span class="subtitle-text">12 desafios, 2 temporadas.</span> 
+                <span class="subtitle-highlight"><span class="highlight-red">1 campeão</span>
+            </div>
+
+            <p class="hero-description animate-fade-in-up" style="animation-delay: 0.6s;">
+                A Copa Pistão reúne sete pilotos em uma disputa acirrada por cada milésimo de segundo. 
+                Bem-vindo ao campeonato mais disputado sobre quatro rodas
+            </p>
+        </div>
+    </section>
+
+    <!-- Seção Fotos - Temporada 25.1 (Galeria) -->
+<section id="fotos" class="gallery-section section-snap">
+  <div class="gallery-main-image">
+    <div class="media-wrapper">
+      <video id="mainGalleryVideo" class="main-gallery-media" autoplay muted loop playsinline style="display: none;"></video>
+      <img id="mainGalleryImage" class="main-gallery-media" src="img1.jpg" alt="Imagem principal" style="display: block;" />
+    </div>
+    <div class="gallery-overlay"></div>
+  </div>
+
+  <div class="gallery-content">
+    <div class="gallery-text animate-slide-in-left">
+      <h2 class="gallery-title">TEMPORADA 25.1</h2>
+      <p class="gallery-subtitle">Janeiro - Junho!</p>
+    </div>
+
+    <div class="gallery-thumbnails animate-slide-in-right">
+      <div class="thumbnail-card active" data-image="img2.jpg">
+        <img src="img2.jpg" alt="Foto 1" class="thumbnail-img">
+        <div class="thumbnail-hover-effect"></div>
+      </div>
+      <div class="thumbnail-card" data-image="img3.jpg">
+        <img src="img3.jpg" alt="Foto 2" class="thumbnail-img">
+        <div class="thumbnail-hover-effect"></div>
+      </div>
+      <div class="thumbnail-card" data-image="video1.mp4">
+      <div class="thumbnail-card" data-image="video1-carrossel.mp4">
+        <img src="img4.png" alt="Foto 3" class="thumbnail-img">
+        <div class="thumbnail-hover-effect"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seção Sobre -->
+    <section id="copa-pistao" class="about-section section-snap">
+  <div class="about-overlay"></div>
+
+  <div class="about-content right-align">
+    <h2 class="about-title animate-fade-in-up" style="animation-delay: 0.2s;">
+      Copa<br>Pistão
+    </h2>
+
+    <p class="about-description animate-fade-in-up" style="animation-delay: 0.4s;">
+      A Copa Pistão é o campeonato oficial entre amigos, <br> com corridas eletrizantes em karts de alta performance.
+      <br> A temporada <span class="highlight-yellow">25.1</span> foi encerrada com 12 corridas intensas. <br>
+      Agora, <span class="highlight-yellow">25.2</span> começa com novos desafios
+    </p>
+
+    <div class="info-list animate-fade-in-up" style="animation-delay: 0.6s;">
+      <div class="info-item">
+        <span class="bullet">•</span>
+        <span class="info-text"> <span class="highlight-yellow">1</span> TEMPORADA - <span class="highlight-yellow">6</span> MESES</span>
+      </div>
+      <div class="info-item">
+        <span class="bullet">•</span>
+        <span class="info-text"><span class="highlight-yellow">2</span> cCORRIDAS/MÊS</span>
+      </div>
+      <div class="info-item">
+        <span class="bullet">•</span>
+        <span class="info-text"><span class="highlight-yellow">7</span> COMPETIDORES</span>
+      </div>
+      <div class="info-item">
+        <span class="bullet">•</span>
+        <span class="info-text"><span class="highlight-yellow">1</span> CAMPEÃO</span>
+      </div>
+      <div class="info-item">
+        <span class="bullet">•</span>
+        <span class="info-text"><span class="highlight-yellow">R$ 1.000</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Seção Pilotos -->
+    <section id="pilotos" class="pilots-section section-snap">
+        <div class="pilots-header animate-fade-in-up">
+            <h2 class="pilots-title">Pilotos</h2>
+        </div>
+
+        <div class="pilots-container">
+            <div class="pilot-card pedro animate-fade-in-up" style="animation-delay: 0.1s;">
+                <span class="pilot-name">PEDRO</span>
+            </div>
+            <div class="pilot-card laura animate-fade-in-up" style="animation-delay: 0.2s;">
+                <span class="pilot-name">LAURA</span>
+            </div>
+            <div class="pilot-card guilherme animate-fade-in-up" style="animation-delay: 0.3s;">
+                <span class="pilot-name">GUILHERME</span>
+            </div>
+            <div class="pilot-card talita animate-fade-in-up" style="animation-delay: 0.4s;">
+                <span class="pilot-name">TALITA</span>
+            </div>
+            <div class="pilot-card adryan animate-fade-in-up" style="animation-delay: 0.5s;">
+                <span class="pilot-name">ADRYAN</span>
+            </div>
+            <div class="pilot-card yasmim animate-fade-in-up" style="animation-delay: 0.6s;">
+                <span class="pilot-name">YASMIM</span>
+            </div>
+            <div class="pilot-card bernardo animate-fade-in-up" style="animation-delay: 0.7s;">
+                <span class="pilot-name">BERNARDO</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Premiação -->
+    <section id="premiacao" class="awards-section section-snap">
+        <div class="awards-background">
+            <!-- Substitua por sua imagem de fundo da premiação -->
+            <img src="premio.png" alt="Pilotos comemorando" class="awards-bg-image">
+            <div class="awards-overlay"></div>
+        </div>
+
+        <div class="awards-content">
+            <h2 class="awards-title animate-fade-in-up">PREMIAÇÃO</h2>
+
+            <div class="podium-awards">
+                <div class="award-card animate-fade-in-up" data-position="1" style="animation-delay: 0.2s;">
+                    <div class="position-number first-place">1</div>
+                    <div class="award-details">
+                        <div class="prize-amount">R$ 1.000</div>
+                        <div class="prize-extra">+ Rodizio</div>
+                    </div>
+                </div>
+
+                <div class="award-card animate-fade-in-up" data-position="2" style="animation-delay: 0.4s;">
+                    <div class="position-number second-place">2</div>
+                    <div class="award-details">
+                        <div class="prize-amount">R$ 400</div>
+                    </div>
+                </div>
+
+                <div class="award-card animate-fade-in-up" data-position="3" style="animation-delay: 0.6s;">
+                    <div class="position-number third-place">3</div>
+                    <div class="award-details">
+                        <div class="prize-amount">R$ 200</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contador -->
+    <section id="contador" class="countdown-section section-snap">
+    <!-- Vídeo de fundo -->
+    <div class="countdown-video-container">
+        <video autoplay muted loop playsinline class="countdown-video">
+        <source src="video-contador.mp4" type="video/mp4">
+        <!-- Fallback se o vídeo não carregar -->
+        <div class="video-fallback"></div>
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div class="countdown-container">
+        <h2 class="countdown-title animate-fade-in-up">PRÓXIMA CORRIDA</h2>
+
+        <div class="countdown-grid">
+        <div class="countdown-item animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Dias</div>
+        </div>
+        <div class="countdown-item animate-fade-in-up" style="animation-delay: 0.4s;">
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Horas</div>
+        </div>
+        <div class="countdown-item animate-fade-in-up" style="animation-delay: 0.6s;">
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutos</div>
+        </div>
+        <div class="countdown-item animate-fade-in-up" style="animation-delay: 0.8s;">
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Segundos</div>
+        </div>
+        </div>
+
+        <div class="race-info animate-fade-in-up" style="animation-delay: 1s;">
+        <p class="race-date">05 de Setembro, 2025 - 14:00</p>
+        <p class="race-location">Kartódromo Internacional</p>
+        </div>
+    </div>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,991 @@
+@font-face {
+  font-family: 'Formula1 Regular';
+  src: url('./fonts/Formula1-Regular-1.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1 Black';
+  src: url('./fonts/Formula1-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Formula1 Bold';
+  src: url('./fonts/Formula1-Bold-4.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sf-light';
+  src: url('./fonts/sf-ui-display-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sf-medium';
+  src: url('./fonts/sf-ui-display-medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sf-bold';
+  src: url('./fonts/sf-ui-display-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'sf-black';
+  src: url('./fonts/sf-ui-display-black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-y: scroll; /* Garante que o scroll snap funcione */
+}
+
+body {
+  font-family: 'sf-medium';
+  overflow-x: clip; 
+  background: #000;
+  color: #fff;
+}
+
+
+/* Scroll Snap para seções */
+.section-snap {
+  scroll-snap-align: start;
+  min-height: 100vh; /* Garante que cada seção ocupe a tela inteira */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  /* Animação de entrada/saída da seção */
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform; /* Otimização de performance */
+}
+
+.section-snap.is-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Menu Fixo - Mais Refinado */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Mais transparente */
+  backdrop-filter: blur(7px); /* Blur mais forte */
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.6); /* Sombra sutil */
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.7rem 2rem; /* Padding ajustado */
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 4rem; /* Espaçamento ajustado */
+}
+
+.nav-link {
+  color: #979797;
+  text-decoration: none;
+  font-weight: 300; /* Mais bold */
+  font-size: 1rem; /* Tamanho ajustado */
+  letter-spacing: 0.08em; /* Mais espaçamento entre letras */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição mais suave */
+  position: relative;
+  padding-bottom: 0.5rem; /* Espaço para o underline */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  transform: translateY(-2px); /* Efeito de leve elevação */
+}
+
+/* Hero Section com Vídeo */
+.hero-section {
+  background: #000; /* Fallback */
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-fallback {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(55, 65, 81, 0.5), #000, #000);
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* Mais escuro para contraste */
+  z-index: 2;
+}
+
+.hero-content {
+  position: absolute;
+  top: 40%;
+  left: 3%;
+  transform: translateY(-50%);
+  z-index: 10;
+  text-align: left;
+  max-width: 800px;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+  animation-delay: 2s;
+}
+
+
+.main-logo-image {
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, filter;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+  animation-delay: 2.3s;
+}
+
+.main-logo-image:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 15px 40px rgba(252, 28, 28, 0.566));
+}
+
+.hero-subtitle {
+  display: inline-block;
+  font-size:1.8rem;
+  color: #fff;
+  font-family: 'Formula1 Regular', sans-serif;
+  font-weight: 800;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+  animation-delay: 2s;
+}
+
+.subtitle-text {
+  display: block;
+  color: #fff;
+}
+
+.subtitle-highlight {
+  color: #E40000;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin-top: 1rem;
+  line-height: 1.6;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+  animation-delay: 3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Seção Galeria (Fotos - Temporada 25.1) */
+.gallery-section {
+  background: #000;
+  justify-content: flex-end; /* Alinha conteúdo ao rodapé */
+}
+
+.gallery-main-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.main-gallery-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição mais suave */
+  will-change: transform, opacity;
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%); /* Gradiente mais forte no rodapé */
+  z-index: 2;
+}
+
+.gallery-content {
+  position: relative;
+  z-index: 10;
+  padding: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Alinha ao rodapé */
+  width: 100%;
+  max-width: 1400px; /* Largura máxima para o conteúdo */
+  margin: 0 auto;
+}
+
+.gallery-text {
+  flex: 1;
+}
+
+.gallery-title {
+  font-size: 4rem;
+  font-family: 'formula1 Black', sans-serif;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-title:hover {
+  color: #ffffff; /* Destaque no hover */
+  text-shadow: 0 6px 25px rgba(255, 255, 255, 0.5); /* Sombra mais intensa no hover */
+  transform: translateY(-2px); /* Efeito de leve elevação */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição mais suave */
+}
+
+.gallery-subtitle {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+.gallery-subtitle:hover {
+  color: #ffffff; /* Destaque no hover */
+  text-shadow: 0 6px 25px rgba(255, 255, 255, 0.5); /* Sombra mais intensa no hover */
+  transform: translateY(-2px); /* Efeito de leve elevação */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transição mais suave */
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 1.5rem; /* Mais espaço entre as miniaturas */
+  flex-shrink: 0;
+}
+
+.thumbnail-card {
+  position: relative;
+  width: 160px; /* Miniaturas maiores */
+  height: 100px;
+  border-radius: 12px; /* Bordas mais arredondadas */
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 3px solid transparent; /* Borda mais grossa */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  will-change: transform, border-color, box-shadow;
+}
+
+.thumbnail-card.active {
+  border-color: #fff;
+  transform: scale(1.08); /* Menos zoom para ser mais sutil */
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.thumbnail-card:hover {
+  transform: scale(1.1); /* Menos zoom para ser mais sutil */
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+}
+
+.thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.thumbnail-hover-effect {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail-card:hover .thumbnail-hover-effect {
+  opacity: 1;
+}
+ /* SOBRE */
+.about-section {
+  position: relative;
+  background: url('foto-sobre.png') no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10%;
+}
+
+.about-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* leve escurecimento pra legibilidade */
+  z-index: 1;
+}
+
+.about-content {
+  position: relative;
+  z-index: 20;
+  max-width: 700px;
+  text-align: left;
+  color: white;
+  padding: 2.2rem 2rem;
+}
+
+.right-align {
+  margin-left: auto;
+}
+
+.about-title {
+  font-family: 'Formula1 Black', sans-serif;
+  font-size: 8rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  line-height: 0.9;
+  text-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.about-description {
+  font-family: 'sf-bold', sans-serif;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.782);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  font-family: 'formula1 bold', sans-serif;
+  font-size: 1.7rem;
+  color: #ffffff;
+}
+
+.bullet {
+  color: #fff;
+  margin-right: 1rem;
+}
+
+.highlight-yellow {
+  color: #fbbf24;
+  font-family: 'Formula1 Bold', sans-serif;
+  font-weight: 700;
+}
+
+
+/* Seção Pilotos Mais Sofisticada */
+.pilots-section {
+  background: #000;
+}
+
+.pilots-header {
+  text-align: center;
+  padding: 5rem 0 3rem; /* Ajustado padding */
+}
+
+.pilots-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 4px 15px rgba(255, 255, 255, 0.43);
+}
+
+.pilots-container {
+  display: flex;
+  height: 70vh;
+  width: 100%;
+}
+
+.pilot-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+  transition: flex 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.6s ease;
+  cursor: pointer;
+  border-right: 1px solid rgba(255, 255, 255, 0.05); /* Linhas divisórias sutis */
+  will-change: flex, background-color;
+}
+
+.pilot-card:last-child {
+  border-right: none;
+}
+
+.pilot-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  transition: background 0.5s ease;
+  z-index: 0;
+}
+
+.pilot-name {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size:3rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.1); /* Cor mais sutil quando não hover */
+  z-index: 1;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  font-family: 'Formula1 Bold', sans-serif;
+  letter-spacing: 0.1em;
+  will-change: color, transform;
+}
+
+.pilot-card:hover {
+  flex: 2;
+}
+
+/* Cores específicas para cada piloto */
+.pilot-card.pedro:hover::before {
+  background: #01d2bd;
+}
+.pilot-card.laura:hover::before {
+  background: #eb1c24;
+}
+.pilot-card.guilherme:hover::before {
+  background: #16175a;
+}
+.pilot-card.talita:hover::before {
+  background: #ff9700;
+}
+.pilot-card.adryan:hover::before {
+  background: #004940;
+}
+.pilot-card.yasmim:hover::before {
+  background: #770a1f;
+}
+.pilot-card.bernardo:hover::before {
+  background: #53fc18;
+}
+
+/* Cores do texto no hover */
+.pilot-card.pedro:hover .pilot-name {
+  color: black;
+}
+.pilot-card.laura:hover .pilot-name {
+  color: #ffe100;
+}
+.pilot-card.guilherme:hover .pilot-name {
+  color: #eb1c24;
+}
+.pilot-card.talita:hover .pilot-name {
+  color: black;
+}
+.pilot-card.adryan:hover .pilot-name {
+  color: white;
+}
+.pilot-card.yasmim:hover .pilot-name {
+  color: white;
+}
+.pilot-card.bernardo:hover .pilot-name {
+  color: black;
+}
+
+/* Seção Premiação Mais Arrojada */
+.awards-section {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.awards-background {
+  position: absolute;
+  inset: 0;
+}
+
+.awards-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.awards-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7); /* Overlay mais escuro */
+}
+
+.awards-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.awards-title {
+  font-family: 'Formula1 Black', sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.podium-awards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.award-card {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  perspective: 1000px; /* Para animação 3D */
+  width: 280px; /* Largura fixa para os cards */
+  height: 380px; /* Altura fixa para os cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  will-change: transform, box-shadow;
+}
+
+.award-card:hover {
+  transform: translateY(-20px) scale(1.05); /* Mais sutil */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.position-number {
+  font-family:'formula1 Black', sans-serif;
+  font-weight: 900;
+  font-size: clamp(5rem, 10vw, 8rem); /* Ajustado para maior impacto */
+  color:#ffbb00;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  backface-visibility: hidden; /* Evita flicker */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+.award-details {
+  opacity: 0;
+  transform: translateY(100%); /* Começa de baixo */
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent); /* Gradiente para o texto */
+  padding: 2rem 1rem;
+  border-radius: 0 0 2rem 2rem;
+  will-change: transform, opacity;
+}
+
+.award-card:hover .position-number {
+  opacity: 0;
+  transform: translate(-50%, -50%) translateY(-50px); /* Move para cima e some */
+}
+
+.award-card:hover .award-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.prize-amount {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.prize-extra {
+  font-size: clamp(2rem, 2vw, 1.5rem); /* Ajustado para maior impacto */
+  color: #ffbb00;
+}
+
+/* Contador */
+.countdown-section {
+  position: relative;
+  overflow: hidden;
+  background: #000; /* fallback */
+  z-index: 0;
+}
+
+.countdown-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.countdown-title {
+  font-size: clamp(4rem, 6vw, 4rem); /* Ajustado para maior impacto */
+  font-weight: 900;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+}
+
+.countdown-item {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-number {
+  font-size: clamp(5rem, 5vw, 3rem); /* Ajustado para maior impacto */
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.countdown-label {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.race-info {
+  text-align: center;
+}
+
+.race-date {
+  font-size: clamp(2rem, 3vw, 1.875rem); /* Ajustado para maior impacto */
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.race-location {
+  font-size: clamp(2rem, 2vw, 1.25rem); /* Ajustado para maior impacto */
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.countdown-video-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.countdown-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+/* Animações de entrada de elementos */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-play-state: paused; /* Controlado por JS */
+}
+
+.animate-slide-in-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInLeft 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-play-state: paused; /* Controlado por JS */
+}
+
+.animate-slide-in-right {
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideInRight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-play-state: paused; /* Controlado por JS */
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+  .hero-description {
+    font-size: 1.4rem;
+  }
+  .gallery-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  .gallery-text {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  .gallery-thumbnails {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+  .podium-container {
+    padding: 1rem;
+  }
+  .about-content {
+    padding: 2rem;
+    text-align: center;
+  }
+  .about-title {
+    font-size: 6rem;
+  }
+  .about-description {
+    font-size: 1.4rem;
+  }
+  .info-item {
+    font-size: 1.4rem;
+    justify-content: center;
+  }
+  .pilots-container {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .pilot-card {
+    flex: 1 1 50%; /* 2 colunas em telas menores */
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .pilot-card:nth-child(even) {
+    border-right: none;
+  }
+  .pilot-card:last-child {
+    border-bottom: none;
+  }
+  .pilot-name {
+    font-size: 2.5rem;
+  }
+  .awards-title {
+    font-size: 5rem;
+  }
+  .podium-awards {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .position-number {
+    font-size: 6rem;
+    padding: 2rem;
+  }
+  .prize-amount {
+    font-size: 2rem;
+  }
+  .prize-extra {
+    font-size: 1.2rem;
+  }
+  .countdown-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    font-size: 0.9rem;
+  }
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+  }
+  .main-logo-image {
+    max-width: 400px;
+  }
+  .gallery-title {
+    font-size: 2.5rem;
+  }
+  .gallery-subtitle {
+    font-size: 1rem;
+  }
+  .thumbnail-card {
+    width: 100px;
+    height: 60px;
+  }
+  .about-title {
+    font-size: 4rem;
+  }
+  .about-description {
+    font-size: 1.1rem;
+  }
+  .info-item {
+    font-size: 1.1rem;
+  }
+  .pilots-header {
+    padding: 3rem 0 1rem;
+  }
+  .pilots-title {
+    font-size: 2rem;
+  }
+  .pilot-name {
+    font-size: 1.8rem;
+  }
+  .awards-title {
+    font-size: 3rem;
+  }
+  .position-number {
+    font-size: 4rem;
+    padding: 1.5rem;
+  }
+  .prize-amount {
+    font-size: 1.5rem;
+  }
+  .prize-extra {
+    font-size: 1rem;
+  }
+  .countdown-title {
+    font-size: 2.5rem;
+  }
+  .countdown-number {
+    font-size: 2rem;
+  }
+  .race-date {
+    font-size: 1.2rem;
+  }
+  .race-location {
+    font-size: 0.9rem;
+  }
+}
