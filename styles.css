@@ -440,27 +440,42 @@ body {
 }
 
 
-/* Seção Pilotos Mais Sofisticada */
+/* Seção Pilotos*/
 .pilots-section {
-  background: #000;
+  background: #000; /* Background simples como antes */
+  position: relative;
+  overflow: hidden;
+}
+
+.pilots-section::before {
+  display: none; /* Remove o efeito radial */
 }
 
 .pilots-header {
   text-align: center;
-  padding: 5rem 0 3rem; /* Ajustado padding */
+  padding: 4rem 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .pilots-title {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 900;
   color: #fff;
-  text-shadow: 0 4px 15px rgba(255, 255, 255, 0.43);
+  letter-spacing: 0.08em;
+  font-family: 'Formula1 Black', 'sf-bold', Arial, sans-serif;
 }
 
 .pilots-container {
   display: flex;
-  height: 70vh;
+  height: 65vh; /* Aumentado de 50vh para 65vh */
   width: 100%;
+  position: relative;
+  z-index: 2;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgba(0,0,0,0.10);
+  backdrop-filter: blur(1px);
 }
 
 .pilot-card {
@@ -468,13 +483,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #000;
+  background: transparent;
   position: relative;
   overflow: hidden;
-  transition: flex 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.6s ease;
+  transition: flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
-  border-right: 1px solid rgba(255, 255, 255, 0.05); /* Linhas divisórias sutis */
-  will-change: flex, background-color;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  min-width: 0;
+  isolation: isolate;
+  height: 100%; /* Garante que o card ocupe toda a altura do container */
 }
 
 .pilot-card:last-child {
@@ -486,50 +503,112 @@ body {
   position: absolute;
   inset: 0;
   background: transparent;
-  transition: background 0.5s ease;
-  z-index: 0;
+  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pilot-card:hover {
+  flex: 1.5;
+  z-index: 3;
 }
 
 .pilot-name {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  font-size:3rem;
+  font-size: 1.6rem;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.1); /* Cor mais sutil quando não hover */
-  z-index: 1;
-  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: rgba(255, 255, 255, 0.18);
+  z-index: 2;
+  transition: 
+    color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   font-family: 'Formula1 Bold', sans-serif;
-  letter-spacing: 0.1em;
-  will-change: color, transform;
+  letter-spacing: 0.10em;
+  user-select: none;
 }
 
-.pilot-card:hover {
-  flex: 2;
+.pilot-card:hover .pilot-name {
+  color: #fff;
+  transform: rotate(180deg) scale(1.08);
+  letter-spacing: 0.13em;
 }
 
-/* Cores específicas para cada piloto */
+/* Cores específicas para cada piloto no hover */
 .pilot-card.pedro:hover::before {
-  background: #01d2bd;
+  background: linear-gradient(120deg, #01d2bd 60%, #fff 100%);
 }
 .pilot-card.laura:hover::before {
-  background: #eb1c24;
+  background: linear-gradient(120deg, #eb1c24 60%, #ffe600 100%);
 }
 .pilot-card.guilherme:hover::before {
-  background: #16175a;
+  background: linear-gradient(120deg, #16175a 60%, #eb1c24 100%);
 }
 .pilot-card.talita:hover::before {
-  background: #ff9700;
+  background: linear-gradient(120deg, #ff9700 60%, #ffe600 100%);
 }
 .pilot-card.adryan:hover::before {
-  background: #004940;
+  background: linear-gradient(120deg, #004940 60%, #53fc18 100%);
 }
 .pilot-card.yasmim:hover::before {
-  background: #770a1f;
+  background: linear-gradient(120deg, #770a1f 60%, #eb1c24 100%);
 }
 .pilot-card.bernardo:hover::before {
-  background: #53fc18;
+  background: linear-gradient(120deg, #fbbf24 60%, #53fc18 100%);
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 1024px) {
+  .pilots-container {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 390px; /* Aumentado de 300px para 390px */
+  }
+  .pilot-card {
+    flex: 1 1 50%;
+    min-width: 120px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    height: 180px; /* Aumentado de 120px para 180px */
+  }
+  .pilot-card:nth-child(even) {
+    border-right: none;
+  }
+  .pilot-card:last-child {
+    border-bottom: none;
+  }
+  .pilot-name {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pilots-header {
+    padding: 2rem 0 1rem;
+  }
+  .pilots-title {
+    font-size: 1.3rem;
+  }
+  .pilots-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+    border-radius: 0.7rem;
+  }
+  .pilot-card {
+    flex: 1 1 100%;
+    min-width: 0;
+    height: 90px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .pilot-card:last-child {
+    border-bottom: none;
+  }
+  .pilot-name {
+    font-size: 0.9rem;
+  }
 }
 
 /* Cores do texto no hover */
@@ -553,6 +632,357 @@ body {
 }
 .pilot-card.bernardo:hover .pilot-name {
   color: black;
+}
+
+/* Seção Ranking - Harmonizado com o restante do site */
+#section-ranking-geral {
+  background: #0000;
+  color: #fff;
+  padding: 80px 0 60px 0;
+  font-family: 'sf-medium', 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 40px 0 rgba(0,0,0,0.18);
+}
+
+#section-ranking-geral h2 {
+  font-size: 3.2rem;
+  font-family: 'Formula1 Black', 'sf-bold', Arial, sans-serif;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 2px 16px #0008;
+}
+
+#section-ranking-geral h2 .versao {
+  color: #ffe600;
+  font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
+}
+
+/* Layout ranking: tabela e cards lado a lado */
+.layout-ranking-geral {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tabela e cards lado a lado */
+.tabela-pontuacao-kart {
+  flex: 1 1 380px;
+  overflow-x: auto;
+  padding: 2rem 0;
+  background: rgba(0,0,0,0.15);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+  min-width: 340px;
+  max-width: 480px;
+  margin: 0;
+}
+
+.cards-kart-ranking-v2 {
+  flex: 1 1 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  min-width: 340px;
+  max-width: 610px;
+}
+
+/* Tabela */
+.tabela-kart {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(24,24,24,0.98);
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.13), 0 1px 2px 0 rgba(255,255,255,0.04);
+  min-width: 390px;
+  margin: 0 auto;
+  transition: box-shadow 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.tabela-kart th,
+.tabela-kart td {
+  padding: 10px 14px;
+  text-align: center;
+  border-bottom: 1px solid #232323;
+  border-right: 1px solid #232323;
+  font-family: 'sf-medium', 'Segoe UI', Arial, sans-serif;
+  transition: background 0.2s;
+}
+
+.tabela-kart th:last-child,
+.tabela-kart td:last-child {
+  border-right: none;
+}
+
+.tabela-kart tr:last-child td {
+  border-bottom: none;
+}
+
+.tabela-kart thead th {
+  background: #232323;
+  color: #ffe600;
+  font-weight: 900;
+  font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
+  letter-spacing: 0.04em;
+  font-size: 1.08rem;
+  border-bottom: 2px solid #eb1c24;
+  text-shadow: 0 2px 8px #0006;
+}
+
+.tabela-kart tbody tr {
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.tabela-kart tbody tr:hover {
+  background: #ffe60018;
+  box-shadow: 0 1px 6px 0 #ffe60022;
+}
+
+.tabela-kart td {
+  font-size: 1rem;
+  font-family: 'sf-medium', 'Segoe UI', Arial, sans-serif;
+  color: #fff;
+  background: transparent;
+}
+
+.tabela-kart tfoot td {
+  background: #232323;
+  color: #eb1c24;
+  font-weight: 900;
+  font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
+  letter-spacing: 0.04em;
+  border-top: 2px solid #eb1c24;
+  font-size: 1.08rem;
+  text-shadow: 0 2px 8px #0006;
+}
+
+/* Cores dos pilotos */
+.piloto-nome.laura    { color: #eb1c24; font-weight: 700; }
+.piloto-nome.pedro    { color: #01d2bd; font-weight: 700; }
+.piloto-nome.guilherme{ color: #16175a; font-weight: 700; }
+.piloto-nome.talita   { color: #ff9700; font-weight: 700; }
+.piloto-nome.adryan   { color: #53fc18; font-weight: 700; }
+.piloto-nome.yasmim   { color: #770a1f; font-weight: 700; }
+.piloto-nome.bernardo { color: #fbbf24; font-weight: 700; }
+
+@media (max-width: 1100px) {
+  .layout-ranking-geral {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+  .tabela-pontuacao-kart,
+  .cards-kart-ranking-v2 {
+    max-width: 98vw;
+    min-width: 0;
+    width: 100%;
+  }
+  .tabela-kart {
+    min-width: 320px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .tabela-kart {
+    min-width: 220px;
+    font-size: 0.92rem;
+  }
+  .tabela-kart th, .tabela-kart td {
+    padding: 7px 6px;
+  }
+}
+
+/* Cards e pódio */
+.podio-kart-v2 {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-podio {
+  width: 170px;
+  border-radius: 22px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  overflow: hidden;
+  padding: 12px 10px 18px 10px;
+  box-shadow: 0 0 0 4px transparent;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  background: linear-gradient(135deg, #232323 60%, #181818 100%);
+  border: 2.5px solid #232323;
+  position: relative;
+}
+
+.card-podio img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 12px #0006;
+}
+
+.card-podio span {
+  display: block;
+  padding: 7px 0;
+  font-family:'Formula1 Bold', sans-serif;
+  font-size: 1.08rem;
+  border-radius: 8px;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Pódio - estilos individuais */
+.card-podio.laura {
+  background: linear-gradient(135deg, #eb1c24 80%, #ffe600 100%);
+  border: 3px solid #ffe600;
+}
+.card-podio.laura:hover {
+  transform: scale(1.07) translateY(-8px) rotate(-2deg);
+  box-shadow: 0 8px 32px 0 #ffe60099, 0 2px 16px 0 #eb1c2499;
+  border-color: #fff;
+  z-index: 2;
+}
+.card-podio.laura span {
+  background: #ffe600;
+  color: #eb1c24;
+}
+
+.card-podio.pedro {
+  background: linear-gradient(135deg, #01d2bd 80%, #fff 100%);
+  border: 3px solid #ffffff;
+}
+.card-podio.pedro:hover {
+  transform: scale(1.07) translateY(-8px) rotate(2deg);
+  box-shadow: 0 8px 32px 0 #01d2bd99, 0 2px 16px 0 #fff9;
+  border-color: #000;
+  z-index: 2;
+}
+.card-podio.pedro span {
+  background: #000;
+  color: #01d2bd;
+}
+
+.card-podio.guilherme {
+  background: linear-gradient(135deg, #16175a 80%, #eb1c24 100%);
+  border: 3px solid #eb1c24;
+}
+.card-podio.guilherme:hover {
+  transform: scale(1.07) translateY(-8px) rotate(-2deg);
+  box-shadow: 0 8px 32px 0 #eb1c2499, 0 2px 16px 0 #16175a99;
+  border-color: #fff;
+  z-index: 2;
+}
+.card-podio.guilherme span {
+  background: #eb1c24;
+  color: #16175a;
+}
+
+/* Cards ranking geral (abaixo do pódio) */
+.card-ranking.geral {
+  width: 610px;
+  padding: 18px 24px;
+  border-radius: 14px;
+  font-family:'Formula1 Bold', 'sf-bold', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.15rem;
+  text-align: left;
+  color: #fff;
+  position: relative;
+  background: linear-gradient(135deg, #232323 60%, #181818 100%);
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.13), 0 1px 6px 0 rgba(255,255,255,0.06);
+  border: 1.5px solid #232323;
+  transition: filter 0.2s, transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.card-ranking.geral:hover {
+  filter: brightness(1.07) saturate(1.04);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 2px 16px 0 #ffe60022;
+  border: 1.5px solid #ffe600;
+}
+
+.card-ranking.adryan {
+  background: linear-gradient(135deg, #004940 80%, #232323 100%);
+}
+.card-ranking.bernardo {
+  background: linear-gradient(135deg, #53fc18 80%, #232323 100%);
+  color: #000;
+}
+.card-ranking.yasmim {
+  background: linear-gradient(135deg, #770a1f 80%, #232323 100%);
+}
+.card-ranking.talita {
+  background: linear-gradient(135deg, #ff9700 80%, #232323 100%);
+  color: #000;
+}
+
+/* Responsividade ranking */
+@media (max-width: 1024px) {
+  .layout-ranking-geral {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+  .card-ranking.geral {
+    width: 95vw;
+    max-width: 610px;
+    font-size: 1rem;
+    padding: 14px 10px;
+  }
+  .tabela-pontuacao-kart,
+  .cards-kart-ranking-v2 {
+    max-width: 98vw;
+    min-width: 0;
+    width: 100%;
+  }
+  .tabela-kart {
+    min-width: 320px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #section-ranking-geral {
+    padding: 40px 0 30px 0;
+  }
+  #section-ranking-geral h2 {
+    font-size: 2rem;
+    margin-bottom: 28px;
+  }
+  .layout-ranking-geral {
+    gap: 18px;
+  }
+  .tabela-pontuacao-kart {
+    padding: 1rem 0;
+  }
+  .tabela-kart th, .tabela-kart td {
+    padding: 6px 3px;
+    font-size: 0.9rem;
+  }
+  .card-podio {
+    width: 120px;
+    padding: 8px 6px 12px 6px;
+  }
+  .card-podio span {
+    font-size: 0.9rem;
+    padding: 4px 0;
+  }
+  .card-ranking.geral {
+    width: 98vw;
+    font-size: 0.95rem;
+    padding: 10px 4px;
+  }
 }
 
 /* Seção Premiação Mais Arrojada */
@@ -588,103 +1018,208 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 4rem;
+  padding: 4rem 2rem;
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  animation: fadeInUp 1.2s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both;
 }
 
 .awards-title {
   font-family: 'Formula1 Black', sans-serif;
   font-size: 5rem;
   font-weight: 900;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   color: #ffffff;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 6px 32px #000a, 0 2px 8px #ffe60044;
+  letter-spacing: 0.04em;
 }
 
 .podium-awards {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 4rem;
+  align-items: flex-end;
+  gap: 3.5rem;
+  flex-wrap: wrap;
 }
 
 .award-card {
   position: relative;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  perspective: 1000px; /* Para animação 3D */
-  width: 280px; /* Largura fixa para os cards */
-  height: 380px; /* Altura fixa para os cards */
+  transition: 
+    transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+    box-shadow 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+    border-color 0.4s;
+  perspective: 1200px;
+  width: 270px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 2.5rem;
+  border-radius: 2.2rem;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  will-change: transform, box-shadow;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.55), 0 2px 12px #ffe60022;
+  background: linear-gradient(135deg, #232323 60%, #181818 100%);
+  border: 2.5px solid #ffe60033;
+  will-change: transform, box-shadow, border-color;
 }
 
-.award-card:hover {
-  transform: translateY(-20px) scale(1.05); /* Mais sutil */
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+.award-card:hover, .award-card:focus-visible {
+  transform: translateY(-24px) scale(1.07) rotateY(6deg);
+  box-shadow: 0 18px 60px #ffe60033, 0 2px 24px #eb1c2444;
+  border-color: #ffe600;
+  z-index: 2;
+}
+
+.award-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,230,0,0.08) 0%, rgba(235,28,36,0.07) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .position-number {
-  font-family:'formula1 Black', sans-serif;
+  font-family: 'Formula1 Black', sans-serif;
   font-weight: 900;
-  font-size: clamp(5rem, 10vw, 8rem); /* Ajustado para maior impacto */
-  color:#ffbb00;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: clamp(5rem, 10vw, 8rem);
+  color: #ffe600;
+  text-shadow: 0 4px 24px #eb1c2444, 0 2px 8px #ffe60044;
+  transition: 
+    opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+    transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
   transform-style: preserve-3d;
-  backface-visibility: hidden; /* Evita flicker */
+  backface-visibility: hidden;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 1;
+  z-index: 2;
+  letter-spacing: 0.02em;
+  filter: drop-shadow(0 2px 12px #ffe60044);
   will-change: transform, opacity;
 }
 
 .award-details {
   opacity: 0;
-  transform: translateY(100%); /* Começa de baixo */
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(100%);
+  transition: 
+    opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94),
+    transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
   text-align: center;
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent); /* Gradiente para o texto */
-  padding: 2rem 1rem;
+  left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.96) 80%, transparent 100%);
+  padding: 2.2rem 1.2rem 1.2rem 1.2rem;
   border-radius: 0 0 2rem 2rem;
+  z-index: 3;
   will-change: transform, opacity;
+  box-shadow: 0 2px 24px #000a;
 }
 
-.award-card:hover .position-number {
+.award-card:hover .position-number,
+.award-card:focus-visible .position-number {
   opacity: 0;
-  transform: translate(-50%, -50%) translateY(-50px); /* Move para cima e some */
+  transform: translate(-50%, -50%) translateY(-60px) scale(0.95);
 }
 
-.award-card:hover .award-details {
+.award-card:hover .award-details,
+.award-card:focus-visible .award-details {
   opacity: 1;
   transform: translateY(0);
 }
 
 .prize-amount {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 900;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
+  color: #ffe600;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px #ffe60033;
+  font-family: 'Formula1 Bold', sans-serif;
 }
 
 .prize-extra {
-  font-size: clamp(2rem, 2vw, 1.5rem); /* Ajustado para maior impacto */
-  color: #ffbb00;
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  color: #fff;
+  font-family: 'sf-bold', sans-serif;
+  margin-top: 0.5rem;
+  text-shadow: 0 2px 8px #ffe60022;
+  letter-spacing: 0.01em;
+}
+
+/* Sutileza de brilho ao passar o mouse */
+.award-card:hover::after, .award-card:focus-visible::after {
+  content: "";
+  position: absolute;
+  left: -60%;
+  top: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.01) 100%);
+  pointer-events: none;
+  animation: cardShine 1.2s linear;
+  z-index: 4;
+}
+
+@keyframes cardShine {
+  0% { opacity: 0; transform: rotate(8deg) translate(-80%, -80%);}
+  60% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(8deg) translate(80%, 80%);}
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 1024px) {
+  .awards-title {
+    font-size: 3.5rem;
+  }
+  .podium-awards {
+    gap: 2rem;
+  }
+  .award-card {
+    width: 220px;
+    height: 300px;
+  }
+  .prize-amount {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .awards-content {
+    padding: 2rem 0.5rem;
+  }
+  .awards-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .podium-awards {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .award-card {
+    width: 98vw;
+    max-width: 320px;
+    height: 220px;
+    min-height: 180px;
+  }
+  .position-number {
+    font-size: 3rem;
+  }
+  .prize-amount {
+    font-size: 1.3rem;
+  }
+  .prize-extra {
+    font-size: 1rem;
+  }
+  .award-details {
+    padding: 1.2rem 0.5rem 0.7rem 0.5rem;
+  }
 }
 
 /* Contador */
