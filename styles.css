@@ -369,7 +369,7 @@ body {
  /* SOBRE */
 .about-section {
   position: relative;
-  background: url('foto-sobre.png') no-repeat center center/cover;
+  background: url('assets/foto-sobre.png') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -459,7 +459,7 @@ body {
 }
 
 .pilots-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 4rem;
   font-weight: 900;
   color: #fff;
   letter-spacing: 0.08em;
@@ -468,7 +468,7 @@ body {
 
 .pilots-container {
   display: flex;
-  height: 65vh; /* Aumentado de 50vh para 65vh */
+  height: 65vh;
   width: 100%;
   position: relative;
   z-index: 2;
@@ -491,7 +491,7 @@ body {
   border-right: 1px solid rgba(255, 255, 255, 0.06);
   min-width: 0;
   isolation: isolate;
-  height: 100%; /* Garante que o card ocupe toda a altura do container */
+  height: 100%;
 }
 
 .pilot-card:last-child {
@@ -517,7 +517,7 @@ body {
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  font-size: 1.6rem;
+  font-size: 2.5rem;
   font-weight: 900;
   color: rgba(255, 255, 255, 0.18);
   z-index: 2;
@@ -556,7 +556,7 @@ body {
   background: linear-gradient(120deg, #770a1f 60%, #eb1c24 100%);
 }
 .pilot-card.bernardo:hover::before {
-  background: linear-gradient(120deg, #fbbf24 60%, #53fc18 100%);
+  background: linear-gradient(120deg, #53fc18 60%, #fbbf24 100%);
 }
 
 /* Responsividade aprimorada */
@@ -634,12 +634,11 @@ body {
   color: black;
 }
 
-/* Seção Ranking - Harmonizado com o restante do site */
+/* Seção Ranking */
 #section-ranking-geral {
   background: #0000;
   color: #fff;
   padding: 80px 0 60px 0;
-  font-family: 'sf-medium', 'Segoe UI', Arial, sans-serif;
   box-shadow: 0 2px 40px 0 rgba(0,0,0,0.18);
 }
 
@@ -655,11 +654,11 @@ body {
 }
 
 #section-ranking-geral h2 .versao {
-  color: #ffe600;
+  color: #eb1c24;
   font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
 }
 
-/* Layout ranking: tabela e cards lado a lado */
+/* Layout ranking: tabela e podio lado a lado */
 .layout-ranking-geral {
   display: flex;
   justify-content: center;
@@ -670,11 +669,11 @@ body {
   margin: 0 auto;
 }
 
-/* Tabela e cards lado a lado */
+/* Tabela e podio lado a lado */
 .tabela-pontuacao-kart {
   flex: 1 1 380px;
   overflow-x: auto;
-  padding: 2rem 0;
+  padding: 0rem 0;
   background: rgba(0,0,0,0.15);
   border-radius: 18px;
   box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
@@ -683,6 +682,7 @@ body {
   margin: 0;
 }
 
+/* Cards abaixo do pódio */
 .cards-kart-ranking-v2 {
   flex: 1 1 380px;
   display: flex;
@@ -714,7 +714,7 @@ body {
   text-align: center;
   border-bottom: 1px solid #232323;
   border-right: 1px solid #232323;
-  font-family: 'sf-medium', 'Segoe UI', Arial, sans-serif;
+  font-family:'sf-light', 'Segoe UI', Arial, sans-serif;
   transition: background 0.2s;
 }
 
@@ -729,12 +729,11 @@ body {
 
 .tabela-kart thead th {
   background: #232323;
-  color: #ffe600;
+  color: #eb1c24;
   font-weight: 900;
   font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
-  letter-spacing: 0.04em;
   font-size: 1.08rem;
-  border-bottom: 2px solid #eb1c24;
+  border-bottom: 2px solid #ffffff;
   text-shadow: 0 2px 8px #0006;
 }
 
@@ -743,8 +742,8 @@ body {
 }
 
 .tabela-kart tbody tr:hover {
-  background: #ffe60018;
-  box-shadow: 0 1px 6px 0 #ffe60022;
+  background: #ff000028;
+  box-shadow: 0 1px 6px 0 #ff000028;
 }
 
 .tabela-kart td {
@@ -754,13 +753,14 @@ body {
   background: transparent;
 }
 
+/*parte final da tabela*/
 .tabela-kart tfoot td {
   background: #232323;
   color: #eb1c24;
   font-weight: 900;
   font-family: 'Formula1 Bold', 'sf-bold', Arial, sans-serif;
   letter-spacing: 0.04em;
-  border-top: 2px solid #eb1c24;
+  border-top: 2px solid #ffffff;
   font-size: 1.08rem;
   text-shadow: 0 2px 8px #0006;
 }
@@ -771,7 +771,7 @@ body {
 .piloto-nome.guilherme{ color: #16175a; font-weight: 700; }
 .piloto-nome.talita   { color: #ff9700; font-weight: 700; }
 .piloto-nome.adryan   { color: #53fc18; font-weight: 700; }
-.piloto-nome.yasmim   { color: #770a1f; font-weight: 700; }
+.piloto-nome.yasmim   { color: #6e770a; font-weight: 700; }
 .piloto-nome.bernardo { color: #fbbf24; font-weight: 700; }
 
 @media (max-width: 1100px) {
@@ -829,7 +829,6 @@ body {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 12px #0006;
 }
 
 .card-podio span {
@@ -848,7 +847,7 @@ body {
   border: 3px solid #ffe600;
 }
 .card-podio.laura:hover {
-  transform: scale(1.07) translateY(-8px) rotate(-2deg);
+  transform: scale(1.07) translateY(-20px) rotate(-3deg);
   box-shadow: 0 8px 32px 0 #ffe60099, 0 2px 16px 0 #eb1c2499;
   border-color: #fff;
   z-index: 2;
@@ -909,7 +908,7 @@ body {
   filter: brightness(1.07) saturate(1.04);
   transform: translateY(-3px) scale(1.01);
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 2px 16px 0 #ffe60022;
-  border: 1.5px solid #ffe600;
+  border: 3px solid #ffffff;
 }
 
 .card-ranking.adryan {
@@ -1038,7 +1037,7 @@ body {
 .podium-awards {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-end;   
   gap: 3.5rem;
   flex-wrap: wrap;
 }

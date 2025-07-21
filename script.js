@@ -52,8 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
         thumbnails.forEach((t) => t.classList.remove("active"));
         this.classList.add("active");
 
-        const newSrc = this.dataset.image;
+        let newSrc = this.dataset.image;
         const isVideo = newSrc.endsWith(".mp4") || newSrc.endsWith(".webm") || newSrc.endsWith(".ogg");
+        // Se não começar com 'assets/', adiciona
+        if (!newSrc.startsWith('assets/')) {
+          newSrc = 'assets/' + newSrc;
+        }
 
         mainImage.style.opacity = "0";
         mainVideo.style.opacity = "0";
