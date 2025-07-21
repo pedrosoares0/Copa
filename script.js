@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function updateCountdown() {
-    const targetDate = new Date("2025-09-05T14:00:00").getTime();
+    const targetDate = new Date("2025-07-25T14:00:00").getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
 
