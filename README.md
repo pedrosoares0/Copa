@@ -3,15 +3,15 @@
 
 # 🏁 Copa Pistão
 **12 desafios. 2 temporadas. 1 campeão.**  
-Milésimos de segundo fazem diferença. Aqui, o erro cobra caro.
 
-🔗 [Acesseaqui](https://copapistao.surge.sh/)  
+🔗 [Acesse aqui](https://copapistao.surge.sh/)  
 ⚠️ **Melhor visualização no computador – responsividade ainda em desenvolvimento.**
 </div>
 
 ---
 
-## 📸 Interface do Projeto
+## git add README.md
+Interface do Projeto
 
 ### 🏆 Ranking dos Pilotos
 <img src="assets/print-ranking.png" alt="Ranking" width="100%" />
@@ -22,19 +22,14 @@ Milésimos de segundo fazem diferença. Aqui, o erro cobra caro.
 ---
 
 ## 🛠️ Tecnologias Utilizadas
-- HTML5 + CSS3
-- JavaScript Vanilla
-- Surge.sh (deploy gratuito)
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg" width="20"/>
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg" width="20"/>
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="20"/>
 
 ---
 
 ## 📌 Observações
-- Projeto em desenvolvimento com foco em **experiência visual**
-- Todos os dados são fictícios e ilustrativos
+- Projeto real desenvolvido para a competição de kart Copa Pistão, organizada entre amigos
+- nterface e funcionalidades pensadas para facilitar o acompanhamento das corridas, pontuação e evolução dos pilotos
 - Layout mobile será otimizado em breve
 
----
-
-<div align="center">
-Feito com 🏎️ e 💻 por [pedrosoares0](https://github.com/pedrosoares0)
-</div>
